@@ -54,7 +54,7 @@ const Testimonials = () => {
       image: "https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=200&h=200&fit=crop&crop=face",
       content: "Sebagai recruiter, dashboard evaluasinya sangat membantu. Kandidat yang datang sudah terfilter dengan baik dan sesuai kebutuhan kami.",
       rating: 5,
-      color: "from-purple-500 to-purple-600"
+      color: "from-emerald-600 to-emerald-700"
     }
   ];
 
@@ -64,8 +64,8 @@ const Testimonials = () => {
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
           backgroundImage: `radial-gradient(circle at 20% 80%, #10B981 0%, transparent 50%), 
-                           radial-gradient(circle at 80% 20%, #3B82F6 0%, transparent 50%),
-                           radial-gradient(circle at 40% 40%, #8B5CF6 0%, transparent 50%)`
+                           radial-gradient(circle at 80% 20%, #10B981 0%, transparent 50%),
+                           radial-gradient(circle at 40% 40%, #065F46 0%, transparent 50%)`
         }}></div>
       </div>
       

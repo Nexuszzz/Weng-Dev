@@ -66,11 +66,9 @@ const Login: React.FC = () => {
 
   const socialLogin = async (provider: 'google' | 'linkedin') => {
     setLoading(true);
-    // TODO: Panggil OAuth provider
-    setTimeout(() => {
-      setLoading(false);
-      navigate('/');
-    }, 900);
+    // Arahkan ke halaman OAuth tiruan, menyertakan 'state' agar setelah callback bisa kembali ke tujuan
+    const state = '/';
+    navigate(`/auth/${provider}?state=${encodeURIComponent(state)}`);
   };
 
   const strengthColor = (s: number) => {

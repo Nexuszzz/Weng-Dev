@@ -49,9 +49,9 @@ const CandidateFeatures = () => {
       icon: <DollarSign className="w-8 h-8" />,
       title: "Tryout Berbayar",
       description: "Ikuti tes premium dari perusahaan dengan jaminan feedback profesional dan peluang kerja",
-      color: "bg-gradient-to-br from-purple-500 to-purple-600",
-      hoverColor: "group-hover:from-purple-600 group-hover:to-purple-700",
-      shadowColor: "shadow-purple-500/25"
+      color: "bg-gradient-to-br from-emerald-600 to-emerald-700",
+      hoverColor: "group-hover:from-emerald-700 group-hover:to-emerald-800",
+      shadowColor: "shadow-emerald-500/25"
     },
     {
       icon: <FileText className="w-8 h-8" />,

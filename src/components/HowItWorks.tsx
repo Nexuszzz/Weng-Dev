@@ -44,8 +44,8 @@ const HowItWorks = () => {
       icon: <Briefcase className="w-8 h-8" />,
       title: 'Magang',
       description: 'Program magang singkat dengan mentoring dan evaluasi',
-      color: 'bg-gradient-to-br from-purple-500 to-purple-600',
-      shadowColor: 'shadow-purple-500/25',
+      color: 'bg-gradient-to-br from-emerald-600 to-emerald-700',
+      shadowColor: 'shadow-emerald-500/25',
     },
     {
       icon: <MessageCircle className="w-8 h-8" />,

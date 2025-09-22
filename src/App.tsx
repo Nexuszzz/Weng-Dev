@@ -12,6 +12,8 @@ import Footer from './components/Footer';
 import AnimatedStats from './components/AnimatedStats';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import OAuthMock from './pages/OAuthMock';
+import OAuthCallback from './pages/OAuthCallback';
 
 function HomePage() {
   return (
@@ -76,6 +78,8 @@ function App() {
         <Route path="/" element={<Page><HomePage /></Page>} />
         <Route path="/login" element={<AuthPage direction="left"><Login /></AuthPage>} />
         <Route path="/register" element={<AuthPage direction="left"><Register /></AuthPage>} />
+        <Route path="/auth/:provider" element={<AuthPage direction="left"><OAuthMock /></AuthPage>} />
+        <Route path="/auth/callback" element={<AuthPage direction="left"><OAuthCallback /></AuthPage>} />
       </Routes>
     </AnimatePresence>
   );

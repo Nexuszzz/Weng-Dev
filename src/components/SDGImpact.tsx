@@ -74,7 +74,7 @@ const SDGImpact = () => {
       stat: "90%",
       title: "Kualitas Tenaga Kerja",
       description: "Perusahaan melaporkan 90% kandidat kami memiliki skill sesuai kebutuhan industri",
-      color: "from-purple-400 to-purple-600"
+      color: "from-emerald-500 to-emerald-700"
     },
     {
       icon: <Globe className="w-12 h-12" />,
@@ -86,25 +86,25 @@ const SDGImpact = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="impact" className="py-20 lg:py-32 bg-gradient-to-br from-indigo-900 via-indigo-800 to-purple-900 text-white relative overflow-hidden">
+    <section ref={sectionRef} id="impact" className="py-20 lg:py-32 bg-gradient-to-br from-emerald-900 via-emerald-800 to-emerald-950 text-white relative overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0">
-        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-indigo-900/50 to-purple-900/50"></div>
+        <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-emerald-900/50 to-emerald-950/50"></div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/10 rounded-full blur-2xl animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-purple-500/10 rounded-full blur-xl animate-ping"></div>
+        <div className="absolute top-1/2 left-1/2 w-48 h-48 bg-emerald-700/10 rounded-full blur-xl animate-ping"></div>
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-indigo-800/50 backdrop-blur-lg rounded-full px-6 py-3 mb-6 border border-indigo-700/50 hover:scale-105 transition-transform duration-300">
+        <div className="text-center mb-16 text-white">
+          <div className="inline-flex items-center space-x-2 bg-emerald-800/50 backdrop-blur-lg rounded-full px-6 py-3 mb-6 border border-emerald-700/50 hover:scale-105 transition-transform duration-300">
             <Globe className="w-5 h-5 animate-spin" style={{ animationDuration: '3s' }} />
             <span className="text-sm font-medium">SDG 8: Decent Work and Economic Growth</span>
           </div>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-emerald-200 to-white bg-clip-text text-transparent">
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-white">
             Dampak untuk Indonesia
           </h2>
-          <p className="text-xl md:text-2xl text-indigo-200 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-white max-w-4xl mx-auto leading-relaxed">
             Berkontribusi pada Sustainable Development Goals melalui penciptaan pekerjaan layak dan pertumbuhan ekonomi yang inklusif
           </p>
         </div>
@@ -137,19 +137,19 @@ const SDGImpact = () => {
               <h3 className="text-lg lg:text-base font-semibold mb-3 group-hover:text-emerald-300 transition-colors duration-300">
                 {impact.title}
               </h3>
-              <p className="text-indigo-200 text-sm lg:text-xs leading-relaxed group-hover:text-indigo-100 transition-colors duration-300">
+              <p className="text-emerald-200 text-sm lg:text-xs leading-relaxed group-hover:text-emerald-100 transition-colors duration-300">
                 {impact.description}
               </p>
             </div>
           ))}
         </div>
         
-        <div className="bg-indigo-800/50 backdrop-blur-lg rounded-3xl p-8 lg:p-12 border border-indigo-700/50 hover:bg-indigo-800/70 transition-all duration-500 transform hover:scale-105">
+        <div className="bg-emerald-800/50 backdrop-blur-lg rounded-3xl p-8 lg:p-12 border border-emerald-700/50 hover:bg-emerald-800/70 transition-all duration-500 transform hover:scale-105">
           <div className="text-center mb-8">
             <h3 className="text-2xl lg:text-3xl font-bold mb-6 bg-gradient-to-r from-white to-emerald-200 bg-clip-text text-transparent">
               Komitmen Kami
             </h3>
-            <p className="text-indigo-200 max-w-3xl mx-auto text-lg leading-relaxed">
+            <p className="text-emerald-200 max-w-3xl mx-auto text-lg leading-relaxed">
               Dengan memfokuskan pada pekerjaan yang layak dan berkualitas, kami berkomitmen untuk mengurangi tingkat pengangguran 
               dan meningkatkan produktivitas ekonomi Indonesia.
             </p>
@@ -173,7 +173,7 @@ const SDGImpact = () => {
                 <div className="text-2xl lg:text-xl font-bold bg-gradient-to-r from-emerald-400 to-emerald-300 bg-clip-text text-transparent mb-2 group-hover:scale-110 transition-transform duration-300">
                   {item.title}
                 </div>
-                <p className="text-sm text-indigo-200 group-hover:text-indigo-100 transition-colors duration-300">
+                <p className="text-sm text-emerald-200 group-hover:text-emerald-100 transition-colors duration-300">
                   {item.desc}
                 </p>
               </div>

@@ -30,7 +30,7 @@ const Hero = () => {
           }}
         ></div>
         <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-blue-500/5 rounded-full blur-2xl animate-bounce"></div>
-        <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-purple-500/5 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 left-1/4 w-48 h-48 bg-emerald-700/5 rounded-full blur-2xl animate-pulse"></div>
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -76,7 +76,7 @@ const Hero = () => {
               {[
                 { number: '1K+', title: 'Kandidat Aktif', desc: 'Talenta berkualitas siap kerja', color: 'emerald', delay: 0 },
                 { number: '200+', title: 'Perusahaan Partner', desc: 'Dari startup hingga korporasi', color: 'blue', delay: 200 },
-                { number: '85%', title: 'Success Rate', desc: 'Kandidat berhasil diterima kerja', color: 'purple', delay: 400 }
+                { number: '85%', title: 'Success Rate', desc: 'Kandidat berhasil diterima kerja', color: 'emerald', delay: 400 }
               ].map((stat, index) => (
                 <div key={index} className={`text-center group transition-all duration-500 delay-${stat.delay}`}>
                   <div className={`w-20 h-20 bg-${stat.color}-100 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-all duration-300 shadow-lg hover:shadow-xl`}>
