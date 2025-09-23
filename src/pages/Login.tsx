@@ -60,14 +60,14 @@ const Login: React.FC = () => {
     // TODO: Integrasikan auth backend di sini
     setTimeout(() => {
       setLoading(false);
-      navigate('/');
+      navigate('/dashboard');
     }, 1200);
   };
 
   const socialLogin = async (provider: 'google' | 'linkedin') => {
     setLoading(true);
     // Arahkan ke halaman OAuth tiruan, menyertakan 'state' agar setelah callback bisa kembali ke tujuan
-    const state = '/';
+    const state = '/dashboard';
     navigate(`/auth/${provider}?state=${encodeURIComponent(state)}`);
   };
 

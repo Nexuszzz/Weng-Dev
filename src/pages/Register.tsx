@@ -61,7 +61,7 @@ const Register: React.FC = () => {
     // TODO: integrasi API register
     setTimeout(() => {
       setLoading(false);
-      navigate('/');
+      navigate('/dashboard');
     }, 1200);
   };
 
@@ -70,7 +70,7 @@ const Register: React.FC = () => {
     // TODO: Panggil OAuth provider
     setTimeout(() => {
       setLoading(false);
-      navigate('/');
+      navigate('/dashboard');
     }, 900);
   };
 

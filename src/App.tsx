@@ -14,6 +14,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import OAuthMock from './pages/OAuthMock';
 import OAuthCallback from './pages/OAuthCallback';
+import Dashboard from './pages/Dashboard';
 
 function HomePage() {
   return (
@@ -76,6 +77,7 @@ function App() {
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Page><HomePage /></Page>} />
+        <Route path="/dashboard" element={<Page><Dashboard /></Page>} />
         <Route path="/login" element={<AuthPage direction="left"><Login /></AuthPage>} />
         <Route path="/register" element={<AuthPage direction="left"><Register /></AuthPage>} />
         <Route path="/auth/:provider" element={<AuthPage direction="left"><OAuthMock /></AuthPage>} />

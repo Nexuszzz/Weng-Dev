@@ -14,7 +14,7 @@ const OAuthCallback: React.FC = () => {
   const [status, setStatus] = useState<'pending' | 'success' | 'error'>('pending');
 
   const provider = q.get('provider') || 'google';
-  const state = q.get('state') || '/';
+  const state = q.get('state') || '/dashboard';
   const code = q.get('code');
 
   useEffect(() => {
