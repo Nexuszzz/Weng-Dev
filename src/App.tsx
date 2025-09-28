@@ -19,6 +19,8 @@ import DashboardJobsHome from './dashboard/pages/DashboardJobsHome';
 import JobFinder from './dashboard/pages/JobFinder';
 import JobSimulation from './dashboard/pages/JobSimulation';
 import FeaturePlaceholder from './dashboard/pages/FeaturePlaceholder';
+import ApprenticeshipTracker from './dashboard/pages/ApprenticeshipTracker';
+import ApplicationTracker from './dashboard/pages/ApplicationTracker';
 import AutoCV from './dashboard/pages/AutoCV';
 import Profile from './dashboard/pages/Profile';
 import Settings from './dashboard/pages/Settings';
@@ -109,7 +111,8 @@ function App() {
           <Route index element={<DashboardJobsHome />} />
           <Route path="job-finder" element={<JobFinder />} />
           <Route path="job-simulation" element={<JobSimulation />} />
-          <Route path="apprenticeship-tracker" element={<FeaturePlaceholder title="Pelacak Magang" />} />
+          <Route path="apprenticeship-tracker" element={<ApprenticeshipTracker />} />
+          <Route path="application-tracker" element={<ApplicationTracker />} />
           <Route path="auto-cv" element={<AutoCV />} />
           <Route path="escrow-contract" element={<FeaturePlaceholder title="Kontrak Escrow" />} />
           <Route path="portfolio" element={<FeaturePlaceholder title="Portofolio" />} />

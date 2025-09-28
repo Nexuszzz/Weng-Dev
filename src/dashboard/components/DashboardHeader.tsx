@@ -45,7 +45,8 @@ const DashboardHeader: React.FC = () => {
             <NavLink to="/dashboard/job-finder" className={({isActive})=>`px-3 py-2 rounded-lg font-medium ${isActive? 'bg-gray-100 text-gray-900':'text-gray-700 hover:text-gray-900 hover:bg-gray-100'}`}>Pencari Pekerjaan</NavLink>
             <NavLink to="/dashboard/job-simulation" className={({isActive})=>`px-3 py-2 rounded-lg font-medium ${isActive? 'bg-gray-100 text-gray-900':'text-gray-700 hover:text-gray-900 hover:bg-gray-100'}`}>Simulasi Kerja</NavLink>
             
-            <NavLink to="/dashboard/apprenticeship-tracker" className={({isActive})=>`px-3 py-2 rounded-lg font-medium ${isActive? 'bg-gray-100 text-gray-900':'text-gray-700 hover:text-gray-900 hover:bg-gray-100'}`}>Pelacak Magang</NavLink>
+            <NavLink to="/dashboard/apprenticeship-tracker" className={({isActive})=>`px-3 py-2 rounded-lg font-medium ${isActive? 'bg-gray-100 text-gray-900':'text-gray-700 hover:text-gray-900 hover:bg-gray-100'}`}>Cari Magang</NavLink>
+            <NavLink to="/dashboard/application-tracker" className={({isActive})=>`px-3 py-2 rounded-lg font-medium ${isActive? 'bg-gray-100 text-gray-900':'text-gray-700 hover:text-gray-900 hover:bg-gray-100'}`}>Pelacak Aplikasi</NavLink>
             <NavLink to="/dashboard/auto-cv" className={({isActive})=>`px-3 py-2 rounded-lg font-medium ${isActive? 'bg-gray-100 text-gray-900':'text-gray-700 hover:text-gray-900 hover:bg-gray-100'}`}>CV Otomatis</NavLink>
             <NavLink to="/dashboard/escrow-contract" className={({isActive})=>`px-3 py-2 rounded-lg font-medium ${isActive? 'bg-gray-100 text-gray-900':'text-gray-700 hover:text-gray-900 hover:bg-gray-100'}`}>Kontrak Escrow</NavLink>
             <NavLink to="/dashboard/portfolio" className={({isActive})=>`px-3 py-2 rounded-lg font-medium ${isActive? 'bg-gray-100 text-gray-900':'text-gray-700 hover:text-gray-900 hover:bg-gray-100'}`}>Portofolio</NavLink>
