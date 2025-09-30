@@ -30,6 +30,17 @@ export interface PortfolioProject {
 }
 
 const LS_KEY = 'wengdev.portfolio.v1';
+const SKILLS_LS_KEY = 'wengdev.portfolio.skills.v1';
+
+export interface UserSkill {
+  id: string;
+  name: string;
+  level: number; // 1-100
+  category?: string;
+  description?: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export function loadProjects(): PortfolioProject[] {
   try {
@@ -184,8 +195,85 @@ export const convertImageToBase64 = (file: File): Promise<string> => {
 };
 
 // Initialize with sample data if empty
+// Skills management functions
+export function loadSkills(): UserSkill[] {
+  try {
+    const raw = localStorage.getItem(SKILLS_LS_KEY);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    return parsed;
+  } catch {
+    return [];
+  }
+}
+
+export function saveSkills(skills: UserSkill[]) {
+  localStorage.setItem(SKILLS_LS_KEY, JSON.stringify(skills));
+}
+
+export function upsertSkill(skill: UserSkill): UserSkill {
+  const skills = loadSkills();
+  const idx = skills.findIndex(s => s.id === skill.id);
+  const now = new Date().toISOString();
+  
+  const updatedSkill = {
+    ...skill,
+    updatedAt: now,
+    createdAt: skill.createdAt || now
+  };
+  
+  if (idx >= 0) {
+    skills[idx] = updatedSkill;
+  } else {
+    skills.push(updatedSkill);
+  }
+  saveSkills(skills);
+  return updatedSkill;
+}
+
+export function deleteSkill(id: string) {
+  const skills = loadSkills().filter(s => s.id !== id);
+  saveSkills(skills);
+  return skills;
+}
+
+export function createEmptySkill(partial?: Partial<UserSkill>): UserSkill {
+  const now = new Date().toISOString();
+  return {
+    id: crypto.randomUUID(),
+    name: '',
+    level: 50,
+    description: '',
+    createdAt: now,
+    updatedAt: now,
+    ...partial,
+  };
+}
+
+// Auto-aggregate skills from project technologies
+export function aggregateSkillsFromProjects(): UserSkill[] {
+  const projects = loadProjects();
+  const techCount = new Map<string, number>();
+  
+  projects.forEach(project => {
+    project.tech.forEach(tech => {
+      techCount.set(tech, (techCount.get(tech) || 0) + 1);
+    });
+  });
+  
+  const maxCount = Math.max(...Array.from(techCount.values()), 1);
+  
+  return Array.from(techCount.entries()).map(([name, count]) => {
+    const level = Math.min(Math.round((count / maxCount) * 80) + 20, 100); // 20-100 range
+    return createEmptySkill({ name, level, category: 'Technology' });
+  });
+}
+
 export function initializeSampleData(): void {
   const existing = loadProjects();
+  const existingSkills = loadSkills();
+  
   if (existing.length === 0) {
     const sampleProjects: Partial<PortfolioProject>[] = [
       {
@@ -253,6 +341,27 @@ export function initializeSampleData(): void {
     sampleProjects.forEach(project => {
       const newProject = createEmptyProject(project);
       upsertProject(newProject);
+    });
+  }
+  
+  // Initialize sample skills if empty
+  if (existingSkills.length === 0) {
+    const sampleSkills: Partial<UserSkill>[] = [
+      { name: 'React', level: 90, category: 'Frontend' },
+      { name: 'TypeScript', level: 85, category: 'Programming Language' },
+      { name: 'JavaScript', level: 95, category: 'Programming Language' },
+      { name: 'Tailwind CSS', level: 80, category: 'Frontend' },
+      { name: 'Node.js', level: 75, category: 'Backend' },
+      { name: 'Next.js', level: 70, category: 'Frontend' },
+      { name: 'PostgreSQL', level: 65, category: 'Database' },
+      { name: 'Git', level: 88, category: 'Tools' },
+      { name: 'Figma', level: 60, category: 'Design' },
+      { name: 'Problem Solving', level: 92, category: 'Soft Skills' }
+    ];
+    
+    sampleSkills.forEach(skill => {
+      const newSkill = createEmptySkill(skill);
+      upsertSkill(newSkill);
     });
   }
 }

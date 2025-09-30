@@ -1,8 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Plus, Search, LayoutGrid, List, Filter, RefreshCw } from 'lucide-react';
-import { loadProjects, upsertProject, deleteProject, PortfolioProject, reorderProjects, createEmptyProject, toggleProjectFeatured, initializeSampleData } from '@/lib/portfolio';
+import { loadProjects, upsertProject, deleteProject, PortfolioProject, reorderProjects, createEmptyProject, toggleProjectFeatured, initializeSampleData, loadSkills, upsertSkill, deleteSkill, UserSkill, aggregateSkillsFromProjects } from '@/lib/portfolio';
 import ProjectCard from '../components/portfolio/ProjectCard';
 import EditProjectDialog from '../components/portfolio/EditProjectDialog';
+import SkillOverview from '../components/skills/SkillOverview';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -12,6 +13,7 @@ import { toast } from 'sonner';
 
 const Portfolio: React.FC = () => {
   const [projects, setProjects] = useState<PortfolioProject[]>([]);
+  const [skills, setSkills] = useState<UserSkill[]>([]);
   const [search, setSearch] = useState('');
   const [viewMode, setViewMode] = useState<'grid'|'list'>('grid');
   const [showDialog, setShowDialog] = useState(false);
@@ -30,6 +32,10 @@ const Portfolio: React.FC = () => {
       } else {
         setProjects(data.sort((a,b)=>(a.sortOrder??0)-(b.sortOrder??0)));
       }
+      
+      // Load skills
+      const skillData = loadSkills();
+      setSkills(skillData);
     } catch (err) {
       console.error('Gagal memuat project portofolio:', err);
       toast.error('Gagal memuat data portofolio');
@@ -74,6 +80,61 @@ const Portfolio: React.FC = () => {
     if (updatedProject) {
       setProjects(prev => prev.map(p => p.id === proj.id ? updatedProject : p));
       toast.success(updatedProject.featured ? 'Project ditandai sebagai unggulan' : 'Project tidak lagi unggulan');
+    }
+  };
+
+  // Skill handlers
+  const handleAddSkill = (skill: UserSkill) => {
+    try {
+      const saved = upsertSkill(skill);
+      setSkills(prev => [...prev.filter(s => s.id !== saved.id), saved]);
+    } catch (err) {
+      console.error('Gagal menambah skill:', err);
+      toast.error('Gagal menambah skill');
+    }
+  };
+
+  const handleEditSkill = (skill: UserSkill) => {
+    try {
+      const updated = upsertSkill(skill);
+      setSkills(prev => prev.map(s => s.id === updated.id ? updated : s));
+    } catch (err) {
+      console.error('Gagal mengupdate skill:', err);
+      toast.error('Gagal mengupdate skill');
+    }
+  };
+
+  const handleDeleteSkill = (skill: UserSkill) => {
+    try {
+      deleteSkill(skill);
+      setSkills(prev => prev.filter(s => s.id !== skill.id));
+    } catch (err) {
+      console.error('Gagal menghapus skill:', err);
+      toast.error('Gagal menghapus skill');
+    }
+  };
+
+  const handleAutoAggregate = () => {
+    try {
+      const aggregated = aggregateSkillsFromProjects(projects);
+      // Merge with existing skills, keeping higher levels
+      const merged = [...skills];
+      aggregated.forEach(newSkill => {
+        const existing = merged.find(s => s.name.toLowerCase() === newSkill.name.toLowerCase());
+        if (existing) {
+          if (newSkill.level > existing.level) {
+            existing.level = newSkill.level;
+            upsertSkill(existing);
+          }
+        } else {
+          const saved = upsertSkill(newSkill);
+          merged.push(saved);
+        }
+      });
+      setSkills(merged);
+    } catch (err) {
+      console.error('Gagal auto-aggregate skills:', err);
+      toast.error('Gagal auto-aggregate skills');
     }
   };
 
@@ -170,6 +231,17 @@ const Portfolio: React.FC = () => {
       )}
 
       <EditProjectDialog open={showDialog} onClose={()=>{setShowDialog(false); setEditing(null);}} project={editing} onSave={handleSave} />
+      
+      {/* Skill Overview Section */}
+      <div className="mt-12">
+        <SkillOverview
+          skills={skills}
+          onAddSkill={handleAddSkill}
+          onEditSkill={handleEditSkill}
+          onDeleteSkill={handleDeleteSkill}
+          onAutoAggregate={handleAutoAggregate}
+        />
+      </div>
     </div>
   );
 };
